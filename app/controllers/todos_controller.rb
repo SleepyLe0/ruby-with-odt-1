@@ -3,14 +3,18 @@ class TodosController < ApplicationController
 
   # GET /todos or /todos.json
   def index
-    @todos = Todo.all
+    if (params[:query].present?) 
+      @todos = Todo.where("title LIKE ?", "%#{params[:query]}%")
+    else 
+      @todos = Todo.all
+    end
   end
 
   # GET /todos/1 or /todos/1.json
   def show
   end
-
-  # GET /todos/new
+  
+  # GET /todos/new  
   def new
     @todo = Todo.new
   end
@@ -25,7 +29,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to todos_path, notice: "Todo was successfully created." }
+        format.html { redirect_to todos_path, notice: "Todo was successfully created" }
         format.json { render :show, status: :created, location: @todo }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +42,7 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to @todo, notice: "Todo was successfully updated." }
+        format.html { redirect_to todos_path, notice: "Todo was successfully updated" }
         format.json { render :show, status: :ok, location: @todo }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +56,7 @@ class TodosController < ApplicationController
     @todo.destroy!
 
     respond_to do |format|
-      format.html { redirect_to todos_path, status: :see_other, notice: "Todo was successfully destroyed." }
+      format.html { redirect_to todos_path, status: :see_other, notice: "Todo was successfully destroyed" }
       format.json { head :no_content }
     end
   end

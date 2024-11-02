@@ -1,4 +1,4 @@
-<div class="h-full rounded-lg bg-slate-500 flex justify-center items-center">
+<div class="h-fit rounded-lg bg-slate-500 flex p-10">
   <%= form_with(model: todo) do |form| %>
     <% if todo.errors.any? %>
       <div style="color: red">
@@ -10,14 +10,14 @@
         </ul>
       </div>
     <% end %>
-    <div class="w-full text-black">
-      <div class="w-full flex flex-col">
-        <%= form.label :title, class: "text-3xl" %>
-        <%= form.text_area :title, class: "text-black" %>
+    <div class="w-full text-black flex flex-col gap-10">
+      <div class="w-full flex flex-col gap-2">
+        <%= form.label :title, class: "text-3xl font-semibold" %>
+        <%= form.text_field :title, placeholder: "Coding...", class: "text-black" %>
       </div>
-      <div class="w-full">
-        <%= form.label :completed, style: "display: block" %>
-        <%= form.number_field :completed, class: "text-black" %>
+      <div class="w-full flex flex-col gap-2">
+        <%= form.label :completed, class: "text-2xl font-semibold" %>
+        <%= form.select :completed,  [[ "Not Completed", "not_completed" ], [ "Completed", "completed" ]], class: "text-black" %>
       </div>
       <div class="w-full flex gap-5">
         <div class="bg-slate-300 rounded-md p-2">

@@ -1,12 +1,11 @@
-<div id="<%= dom_id todo %>">
-  <p class="text-2xl">
-    <strong>Title:</strong>
-    <%= todo.title %>
-  </p>
-
-  <p class="text-2xl">
-    <strong>Completed:</strong>
-    <%= todo.completed || "Not Provided" %>
-  </p>
-
+<div id="<%= dom_id todo %>" class="flex flex-col gap-4">
+  <div class="text-2xl">
+    <% if todo.completed === "completed" %>
+      <div class="line-through">
+        <%= todo.title %>
+      </div>
+    <% else %>
+      <%= todo.title %>
+    <% end %>
+  </div>
 </div>

@@ -1,25 +1,49 @@
 <% if notice %>
-  <div class="absolute top-5 max-w-screen-md w-full p-2 flex justify-center bg-white bg-opacity-50 text-black text-xl rounded-md">
+  <div class="absolute top-5 w-[50rem] p-2 flex justify-center bg-white bg-opacity-50 text-black text-xl rounded-md">
     <%= notice %>
   </div>
 <% end %>
 <% content_for :title, "Todos" %>
 <section class="w-full h-full flex flex-col gap-5">
+  <h1 class="text-7xl font-bold">Todos</h1>
   <div class="flex justify-between items-end">
-    <h1 class="text-7xl font-bold">Todos</h1>
+    <div class="flex gap-2">
+      <%= form_with(url: todos_path, method: :get, local: true) do |form| %>
+        <div class="flex gap-2">
+          <div class="w-full flex gap-2">
+            <%= form.text_field :query, value: params[:query], placeholder: "Search title", class: "text-black" %>
+          </div>
+          <div class="bg-green-500 text-white rounded-md p-2">
+            <%= form.submit "search" %>
+          </div>
+        </div>
+      <% end %>
+      <%= form_with(url: todos_path, method: :get, local: true) do |form| %>
+        <div class="flex gap-2">
+          <div class="bg-red-500 text-white rounded-md p-2">
+            <%= form.submit "clear" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
     <div class="bg-white text-slate-900 rounded-md p-2">
       <%= link_to "New todo", new_todo_path %>
     </div>
   </div>
-  <div id="todos" class="h-full rounded-lg bg-slate-500 flex justify-center p-5">
+  <div id="todos" class="h-full rounded-lg bg-slate-500 flex flex-col p-5 gap-5 items-center">
     <% if @todos.empty? %>
       <div class="w-full h-full flex justify-center items-center text-4xl text-slate-900">Empty Task Table</div>
     <% else %>
       <% @todos.each do |todo| %>
-        <div class="w-full h-fit bg-slate-700 rounded-md p-5 flex justify-between items-center">
+        <div class="w-full h-fit bg-slate-700 rounded-md flex p-5 justify-between items-center">
           <%= render todo %>
-          <div>
-            <%= button_to "Delete", todo, method: :delete %>
+          <div class="flex gap-2">
+            <div class="bg-slate-900 flex rounded-md p-2">
+              <%= link_to "Edit", edit_todo_path(todo) %>
+            </div>
+            <div class="bg-slate-900 flex rounded-md p-2">
+              <%= button_to "Delete", todo, method: :delete %>
+            </div>
           </div>
         </div>
       <% end %>
