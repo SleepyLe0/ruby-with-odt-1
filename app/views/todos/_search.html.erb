@@ -1,0 +1,19 @@
+<div class="flex gap-2">
+  <%= form_with(url: todos_path, method: :get, local: true) do |form| %>
+    <div class="flex gap-2">
+      <div class="w-full flex gap-2">
+        <%= form.text_field :query, value: params[:query], placeholder: "Search title", class: "text-black" %>
+      </div>
+      <div class="bg-green-500 text-white rounded-md p-2">
+        <%= form.submit "search" %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to todos_path() do %>
+    <div class="flex gap-2">
+      <div class="bg-red-500 text-white rounded-md p-2">
+        clear
+      </div>
+    </div>
+  <% end %>
+</div>
