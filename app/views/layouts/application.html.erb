@@ -8,16 +8,25 @@
     <%= csp_meta_tag %>
 
     <%= yield :head %>
-
+  
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+      body {
+        font-family: "Ubuntu", sans-serif;
+      }
+    </style>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="relative w-screen h-screen flex justify-center items-center bg-slate-900 overflow-hidden text-white">
+    <main class="max-w-screen-lg w-full h-full flex flex-col gap-5 p-10">
+      <%= yield %>
+    </main>
   </body>
 </html>

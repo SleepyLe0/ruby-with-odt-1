@@ -13,15 +13,20 @@
 
   <div>
     <%= form.label :title, style: "display: block" %>
-    <%= form.text_area :title %>
+    <%= form.text_area :title, class: "text-black" %>
   </div>
 
   <div>
     <%= form.label :completed, style: "display: block" %>
-    <%= form.number_field :completed %>
+    <%= form.number_field :completed, class: "text-black" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="flex">
+    <div>
+      <%= form.submit %>
+    </div>
+    <div>
+      <%= link_to "Back to todos", todos_path %>
+    </div>
   </div>
 <% end %>

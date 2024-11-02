@@ -1,16 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<% if notice %>
+  <div class="absolute top-5 max-w-screen-md w-full p-2 flex justify-center bg-white text-black text-xl rounded-md">
+    <%= notice %>
+  </div>
+<% end %>
 
 <% content_for :title, "Todos" %>
 
-<h1>Todos</h1>
-
-<div id="todos">
-  <% @todos.each do |todo| %>
-    <%= render todo %>
-    <p>
-      <%= link_to "Show this todo", todo %>
-    </p>
-  <% end %>
+<div class="flex justify-between items-center">
+  <h1 class="text-7xl font-bold">Todo</h1>
+  <div class="bg-green-500 rounded-md p-2">
+    <%= link_to "New todo", new_todo_path %>
+  </div>
 </div>
 
-<%= link_to "New todo", new_todo_path %>
+<div id="todos" class="h-full rounded-lg bg-slate-500 flex justify-center items-center">
+  <% if @todos.empty? %>
+    <div class="text-4xl text-black">Empty Task Table</div>
+  <% else %>
+    <% @todos.each do |todo| %>
+      <%= render todo %>
+      <p>
+        <%= link_to "Show this todo", todo %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
