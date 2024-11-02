@@ -6,9 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-  
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -23,7 +21,6 @@
     </style>
     <%= javascript_importmap_tags %>
   </head>
-
   <body class="relative w-screen h-screen flex justify-center items-center bg-slate-900 overflow-hidden text-white">
     <main class="max-w-screen-lg w-full h-full flex flex-col gap-5 p-10">
       <%= yield %>

@@ -1,27 +1,28 @@
 <% if notice %>
-  <div class="absolute top-5 max-w-screen-md w-full p-2 flex justify-center bg-white text-black text-xl rounded-md">
+  <div class="absolute top-5 max-w-screen-md w-full p-2 flex justify-center bg-white bg-opacity-50 text-black text-xl rounded-md">
     <%= notice %>
   </div>
 <% end %>
-
 <% content_for :title, "Todos" %>
-
-<div class="flex justify-between items-center">
-  <h1 class="text-7xl font-bold">Todo</h1>
-  <div class="bg-green-500 rounded-md p-2">
-    <%= link_to "New todo", new_todo_path %>
+<section class="w-full h-full flex flex-col gap-5">
+  <div class="flex justify-between items-end">
+    <h1 class="text-7xl font-bold">Todos</h1>
+    <div class="bg-white text-slate-900 rounded-md p-2">
+      <%= link_to "New todo", new_todo_path %>
+    </div>
   </div>
-</div>
-
-<div id="todos" class="h-full rounded-lg bg-slate-500 flex justify-center items-center">
-  <% if @todos.empty? %>
-    <div class="text-4xl text-black">Empty Task Table</div>
-  <% else %>
-    <% @todos.each do |todo| %>
-      <%= render todo %>
-      <p>
-        <%= link_to "Show this todo", todo %>
-      </p>
+  <div id="todos" class="h-full rounded-lg bg-slate-500 flex justify-center p-5">
+    <% if @todos.empty? %>
+      <div class="w-full h-full flex justify-center items-center text-4xl text-slate-900">Empty Task Table</div>
+    <% else %>
+      <% @todos.each do |todo| %>
+        <div class="w-full h-fit bg-slate-700 rounded-md p-5 flex justify-between items-center">
+          <%= render todo %>
+          <div>
+            <%= button_to "Delete", todo, method: :delete %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+</section>
